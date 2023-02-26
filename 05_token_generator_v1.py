@@ -7,7 +7,7 @@ tokens = ["unicorn", "horse", "zebra", "donkey"]
 balance=100
 
 #Testing loop to generate 20 tokens
-for item in range (0,20):
+for item in range (0,10):
     chosen= random.choice(tokens)
 
     #Adjust balance
@@ -20,5 +20,5 @@ for item in range (0,20):
 
 
     #output
-        print("Token: {} , Balance: ${}".format (chosen, balance))
+    print("Token: {} , Balance: ${}".format (chosen, balance))
 
