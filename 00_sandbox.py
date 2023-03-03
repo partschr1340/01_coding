@@ -1,5 +1,19 @@
-import random
+def statement_generator (statement, decoration):
+    sides = decoration * 3
 
-for item in range (0, 20):
-    number = random.randint(0, 20)
-    print (number, end="\t")
+    greeting = " {} {} {} ".format(sides, statement, sides)
+    top_bottom= decoration * len(statement)
+
+    top_bottom = "=" * len(greeting)
+
+    print(top_bottom)
+    print(greeting)
+    print(top_bottom)
+
+    return ""
+
+
+#Main routine goes here
+statement_generator("WELCOME TO THE LUCKY UNICORN GAME", "*")
+print()
+statement_generator("Congratulations, you got a UNICORN", "!")

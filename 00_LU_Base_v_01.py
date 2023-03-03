@@ -1,4 +1,5 @@
 #Functions go here...
+
 def yes_no(question):
     valid=False
     while not valid:
@@ -29,7 +30,7 @@ def instructions():
     return""
 
 def num_check(question,low,high):
-    error =  "Enter a number between 1 and 10 mf\n"
+    error =  "Enter a number between 1 and 10\n"
 
     valid = False
     while not valid:
