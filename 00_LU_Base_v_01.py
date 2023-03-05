@@ -1,7 +1,9 @@
-#Functions go here...
+# Functions go here...
+import random
 
+# Checks that user answer yes or no to the question
 def yes_no(question):
-    valid=False
+    valid = False
     while not valid:
         response = input(question).lower()
 
@@ -16,6 +18,8 @@ def yes_no(question):
         else:
             print("please answer yes/no")
 
+
+# Displays instructions, returns""
 def instructions():
     print("********HOW TO PLAY********")
     print()
@@ -27,10 +31,12 @@ def instructions():
     print("*These animals with either be a Horse [which makes you lose $1]")
     print("*A horse or zebra [which will make you lose $0.50]")
     print("*Or a Unicorn [Which wins $4]")
-    return""
+    return ""
 
-def num_check(question,low,high):
-    error =  "Enter a number between 1 and 10\n"
+
+# Checks that the user enters an integer between a low and high number.
+def num_check(question, low, high):
+    error = "Enter a number between 1 and 10\n"
 
     valid = False
     while not valid:
@@ -39,7 +45,7 @@ def num_check(question,low,high):
             response = int(input(question))
             # if the amount is too low/ too high to give
             if low < response <= high:
-               return response
+                return response
 
             # output an error
             else:
@@ -49,18 +55,32 @@ def num_check(question,low,high):
             print(error)
 
 
-#Main Routine goes here...
+# Introduces the user to the game, adds decoration to each program
+def statement_generator(statement, decoration):
+    sides = decoration * 3
+
+    greeting = " {} {} {} ".format(sides, statement, sides)
+    top_bottom = prize_decoration * len(statement)
+
+    top_bottom = "~" * len(greeting)
+
+    print(top_bottom)
+    print(greeting)
+    print(top_bottom)
+
+    return ""
+
+
+# Main Routine goes here...
 played_before = yes_no("Have you played the game before?")
 
 if played_before == "no":
-   instructions()
+    instructions()
 
 print()
 
-#Ask user much they want to play with...
-how_much = num_check ("How much would you like to play with?", 0, 10)
-
-import random
+# Ask user much they want to play with...
+how_much = num_check("How much would you like to play with?", 0, 10)
 
 # set balance for testing purposes
 balance = how_much
@@ -83,6 +103,7 @@ while play_again == "":
     # user gets a unicorn(adds $4 to their balance.)
     if 1 <= chosen_num <= 5:
         chosen = "unicorn"
+        prize_decoration = "!"
         balance += 4
 
     # if the random # is between 6 and 36
@@ -90,19 +111,25 @@ while play_again == "":
 
     elif 6 <= chosen_num <= 36:
         chosen = "donkey"
+        prize_decoration = "-"
         balance -= 1
 
     else:
         # if the number is even, set the chosen item to horse
         if chosen_num % 2 == 0:
             chosen = "horse"
+            prize_decoration = "*"
 
         # otherwise set it to a zebra
         else:
             chosen = "zebra"
+            prize_decoration = "*"
         balance -= 0.5
-    print(f"You got a {chosen}, your balance is ${balance:.2f}")
-    print()
+
+    outcome = "You got a {}. Your balance is" \
+              "${:.2f}.".format(chosen, balance)
+
+    statement_generator(outcome, prize_decoration)
 
     if balance < 1:
         # If balance is too low, exit the game and output a suitable message
