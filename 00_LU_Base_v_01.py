@@ -1,6 +1,7 @@
 # Functions go here...
 import random
 
+
 # Checks that user answer yes or no to the question
 def yes_no(question):
     valid = False
@@ -16,7 +17,11 @@ def yes_no(question):
             return response
 
         else:
-            print("please answer yes/no")
+            print()
+            print("============================")
+            print("**please answer yes or no**")
+            print("============================")
+            print()
 
 
 # Displays instructions, returns""
@@ -59,20 +64,23 @@ def num_check(question, low, high):
 def statement_generator(statement, decoration):
     sides = decoration * 3
 
-    greeting = " {} {} {} ".format(sides, statement, sides)
-    top_bottom = prize_decoration * len(statement)
-
-    top_bottom = "~" * len(greeting)
+    statement = "{} {} {}".format(sides, statement, sides)
+    top_bottom = decoration * len(statement)
 
     print(top_bottom)
-    print(greeting)
+    print(statement)
     print(top_bottom)
 
     return ""
 
 
 # Main Routine goes here...
-played_before = yes_no("Have you played the game before?")
+
+statement_generator("Welcome to the lucky Unicorn Game!", "*")
+
+print()
+
+played_before = yes_no("=====Have you played the game before?=====")
 
 if played_before == "no":
     instructions()
@@ -87,7 +95,7 @@ balance = how_much
 
 rounds_played = 0
 
-play_again = input("press <enter> to play...").lower()
+play_again = input("----press <enter> to play----").lower()
 while play_again == "":
 
     # increase # of rounds played
@@ -95,6 +103,7 @@ while play_again == "":
 
     # Print round number
     print("========= Round #{}=========".format(rounds_played))
+    prize_decoration = "*"
 
     chosen_num = random.randint(1, 100)
 
@@ -111,7 +120,7 @@ while play_again == "":
 
     elif 6 <= chosen_num <= 36:
         chosen = "donkey"
-        prize_decoration = "-"
+        prize_decoration = "*"
         balance -= 1
 
     else:
@@ -135,6 +144,7 @@ while play_again == "":
         # If balance is too low, exit the game and output a suitable message
         play_again = "xxx"
         print("Sorry, you have ran out of money")
+
     else:
         play_again = input("Press Enter to play again or 'xxx' to quit.")
         print()
