@@ -95,6 +95,7 @@ balance = how_much
 
 rounds_played = 0
 
+print()
 play_again = input("----press <enter> to play----").lower()
 while play_again == "":
 
@@ -103,6 +104,7 @@ while play_again == "":
 
     # Print round number
     print("========= Round #{}=========".format(rounds_played))
+    print()
     prize_decoration = "*"
 
     chosen_num = random.randint(1, 100)
@@ -111,7 +113,7 @@ while play_again == "":
     # if the random # is between 1 and 5,
     # user gets a unicorn(adds $4 to their balance.)
     if 1 <= chosen_num <= 5:
-        chosen = "unicorn"
+        chosen = "UNICORN"
         prize_decoration = "!"
         balance += 4
 
@@ -119,23 +121,23 @@ while play_again == "":
     # user gets a donkey (subtract $1 from balance)
 
     elif 6 <= chosen_num <= 36:
-        chosen = "donkey"
-        prize_decoration = "*"
+        chosen = "DONKEY"
+        prize_decoration = "D"
         balance -= 1
 
     else:
         # if the number is even, set the chosen item to horse
         if chosen_num % 2 == 0:
-            chosen = "horse"
-            prize_decoration = "*"
+            chosen = "HORSE"
+            prize_decoration = "H"
 
         # otherwise set it to a zebra
         else:
-            chosen = "zebra"
-            prize_decoration = "*"
+            chosen = "ZEBRA"
+            prize_decoration = "Z"
         balance -= 0.5
 
-    outcome = "You got a {}. Your balance is" \
+    outcome = "YOU GOT A {}. YOUR BALANCE IS NOW " \
               "${:.2f}.".format(chosen, balance)
 
     statement_generator(outcome, prize_decoration)
@@ -146,8 +148,10 @@ while play_again == "":
         print("Sorry, you have ran out of money")
 
     else:
+        print()
         play_again = input("Press Enter to play again or 'xxx' to quit.")
         print()
 
-print()
-print(f"Final balance: ${balance:.2f}")
+print("========================")
+print(f"  Final balance: ${balance:.2f}")
+print("========================")
